@@ -14,40 +14,34 @@
     <script>
         document.getElementById('runCodeButton').addEventListener('click', function() {
             const userInput = document.getElementById('numberInput').value;
-            const result = runCode(userInput); // Call your existing code with user input
-            document.getElementById('result').textContent = 'Result: ' + result;
+            const parsedData = getParsedData(); // Call function to get parsed data
+            if (Array.isArray(parsedData)) {
+                const result = runCode(parsedData, userInput); // Call your existing code with parsed data and user input
+                document.getElementById('result').textContent = 'Result: ' + result;
+            } else {
+                console.error('Parsed data is not an array:', parsedData);
+            }
         });
 
+        // Function to simulate fetching parsed data
+        function getParsedData() {
+            // This function should be replaced with your actual function to fetch parsed data
+            // For demonstration purposes, returning a hardcoded string and converting it to an array
+            const dataString = `1,2,3,4\n5,6,7,8`; // Example CSV data as a string
+            const rows = dataString.trim().split('\n');
+            const parsedData = rows.map(row => row.split(','));
+            return parsedData;
+        }
+
         // Your existing JavaScript code
-        function runCode(input) {
-            // Modify your existing code to accept input parameter
+        function runCode(parsedData, userInput) {
+            // Modify your existing code to accept parsedData and userInput parameters
             // Example code
-            const parseCSV = async (filename) => {
-    const response = await fetch(filename);
-  const data = await response.text();
-  const rows = data.split('\n');
-  const parsedData = [];
-  for (const row of rows) {
-    parsedData.push(row.split(','));
-  };
-};
-
-// Example usage
-const filename = 'ek182.csv';
-parseCSV(filename).then((parsedData) => {
-  let x = 1;
-  const dictp = {};
-  for (const row of parsedData) {
-    const answer = row[3];
-    console.log(answer);
-    dictp[x] = answer;
-    x++;
-  }
-  console.log(dictp)
-    
-      return dictp[userInput];
-});
-
+            let result = '';
+            for (const row of parsedData) {
+                result += row[userInput - 1] + ' '; // Accessing value based on user input
+            }
+            return result.trim();
         }
     </script>
 </body>
