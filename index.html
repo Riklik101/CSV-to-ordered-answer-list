@@ -29,8 +29,7 @@
   const parsedData = [];
   for (const row of rows) {
     parsedData.push(row.split(','));
-  }
-  return parsedData;
+  };
 };
 
 // Example usage
@@ -44,7 +43,9 @@ parseCSV(filename).then((parsedData) => {
     dictp[x] = answer;
     x++;
   }
-  console.log(dictp);
+  console.log(dictp)
+    
+      return dictp[userInput];
 });
 
         }
