@@ -26,11 +26,17 @@
         // Function to simulate fetching parsed data
         function getParsedData() {
             // This function should be replaced with your actual function to fetch parsed data
-            // For demonstration purposes, returning a hardcoded string and converting it to an array
-            const dataString = `1,2,3,4\n5,6,7,8`; // Example CSV data as a string
-            const rows = dataString.trim().split('\n');
-            const parsedData = rows.map(row => row.split(','));
-            return parsedData;
+            const parseCSV = async (filename) => {
+      const response = await fetch(filename);
+      const data = await response.text();
+      const rows = data.split('\n');
+      const parsedData1 = [];
+      for (const row of rows) {
+        parsedData.push(row.split(',')); 
+      }
+  }}
+    const filename = 'ek182.csv';
+    parseCSV(filename);
         }
 
         // Your existing JavaScript code
