@@ -22,7 +22,31 @@
         function runCode(input) {
             // Modify your existing code to accept input parameter
             // Example code
-            return input * 2; // Multiply user input by 2 as an example
+            const parseCSV = async (filename) => {
+    const response = await fetch(filename);
+  const data = await response.text();
+  const rows = data.split('\n');
+  const parsedData = [];
+  for (const row of rows) {
+    parsedData.push(row.split(','));
+  }
+  return parsedData;
+};
+
+// Example usage
+const filename = 'ek182.csv';
+parseCSV(filename).then((parsedData) => {
+  let x = 1;
+  const dictp = {};
+  for (const row of parsedData) {
+    const answer = row[3];
+    console.log(answer);
+    dictp[x] = answer;
+    x++;
+  }
+  console.log(dictp);
+});
+
         }
     </script>
 </body>
