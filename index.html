@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Page with User Input</title>
+</head>
+<body>
+    <label for="numberInput">Enter a number:</label>
+    <input type="number" id="numberInput">
+    <button id="runCodeButton">Run Code</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('runCodeButton').addEventListener('click', function() {
+            const userInput = document.getElementById('numberInput').value;
+            const result = runCode(userInput); // Call your existing code with user input
+            document.getElementById('result').textContent = 'Result: ' + result;
+        });
+
+        // Your existing JavaScript code
+        function runCode(input) {
+            // Modify your existing code to accept input parameter
+            // Example code
+            return input * 2; // Multiply user input by 2 as an example
+        }
+    </script>
+</body>
+</html>
